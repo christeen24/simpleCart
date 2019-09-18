@@ -3,9 +3,12 @@
     <head>
         <title>Cart</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    </head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>  
+    </head>
     <body>
-        <div class="container" style="margin-left: 4rem !important">
+        <div class="container" style="margin-left: 2rem !important">
             <div class="row" style="margin-top: 20px;">
                 <div class="col-md-8" style="border-right: 2px solid #636e72">
                     <div class="row" id="itemBody">
@@ -15,7 +18,7 @@
                 <div class="col-md-4">
                     <h3 style="color: #192a56;">Cart</h3>
                     <br>
-                    <table>  
+                    <table style="margin-left: 1rem">  
                         <thead>
                             <tr>
                                 <th style="padding-left:1rem; padding-bottom:1rem; color: #273c75;">Item Name</th>
@@ -90,13 +93,13 @@
             $('#cartBody').html('');
             $.each(cartItemArray,function(key,value){
                 $('#cartBody').append(
-                        '<tr style="padding-bottom:1reml;">'
+                        '<tr style="padding-bottom:1rem;">'
                             +'<td style="padding-left:1rem; color: "><h6>'+value.itemName+'</h6></td>'
                             +'<td style="padding-left:2rem; color:#353b48; "><h6>Rs.'+value.itemPrice+'</h6></td>'
                             +'<td style="padding-left:2rem; color:#353b48; ">'
-                            +'<input type="number" style="width:50px; name="quantity" id="quantity_'+value.id+'" onchange="calculateCart('+value.id+')" value="'+value.quantity+'">'
+                                +'<input class="form-control" type="number" name="quantity" id="quantity_'+value.id+'" onchange="calculateCart('+value.id+')" value="'+value.quantity+'">'
                             +'</td>'
-                            +'<td style="padding-left:2rem; color:#353b48; "><h6>Rs.'+value.subTotal+'</h6></td>'
+                            +'<td style="padding-left:2rem; color:#353b48; "><h6>Rs.'+value.subTotal+'.00</h6></td>'
                             +'<td style="padding-left:2rem; color:#353b48; "><a href="#" class="btn btn-danger btn-sm" onclick="deleteFromCart('+value.id+')"><i class="fa fa-close"></i></a></td>'
                         +'</tr>'
                 );   
@@ -128,7 +131,7 @@
             
             $('#Total').html('');
             $('#Total').append(
-                '<h5 style="color:#192a56;">Rs.'+total+'</h5>'
+                '<h5 style="color:#192a56;">Rs.'+total+'.00</h5>'
             );
 
             drawCart();
